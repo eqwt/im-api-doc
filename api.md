@@ -113,3 +113,17 @@ token刷新：如响应头中有Authorization，则刷新token
 ]
 ```
 
+## 好友详情  friend/info  get
+
+```
+[
+	tx_id：对方腾讯用户id
+]
+
+{
+	number：用户app号
+	custom_id：用户appid
+	pretty_id：用户靓号id
+}
+```
+
