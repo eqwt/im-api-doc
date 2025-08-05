@@ -19,6 +19,36 @@ token刷新：如响应头中有Authorization，则刷新token
 {} 响应参数，只会描述data部分
 ```
 
+# IM自定义字段-----待定
+
+```
+字段值使用json字符串存储
+```
+
+## 用户字段
+
+```
+字段名：
+
+参数：
+[
+	is_open_mobile_search：是否开启手机号搜索
+	is_open_app_id_search：是否开启APPID搜索
+	is_bind_device：是否绑定当前设备，默认0
+	....
+]
+```
+
+## 群组字段
+
+```
+
+
+[
+
+]
+```
+
 # API
 
 ## 注册  register  post
@@ -47,9 +77,9 @@ token刷新：如响应头中有Authorization，则刷新token
 
 {
 	token：登录token
-	user_sig：腾讯SDK UserSig
-	tx_appid：腾讯SDK appid
-	tx_id：腾讯用户id
+	user_sig：IMSDK UserSig
+	im_appid：IMSDK appid
+	im_id：IM用户id
 }
 ```
 
@@ -66,11 +96,12 @@ token刷新：如响应头中有Authorization，则刷新token
 
 ```
 {
-	number：用户app号
-	custom_id：用户appid
-	pretty_id：用户靓号id
+	app_id：用户APPid
 	mobile：手机
 	email：邮箱
+	pretty_id：用户靓号id
+	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
 }
 ```
 
@@ -82,10 +113,11 @@ token刷新：如响应头中有Authorization，则刷新token
 ]
 
 {
-	tx_id：腾讯用户id
-	number：用户app号
-	custom_id：用户appid
+	im_id：IM用户id
+	app_id：用户APPid
 	pretty_id：用户靓号id
+	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
 }
 ```
 
@@ -117,13 +149,14 @@ token刷新：如响应头中有Authorization，则刷新token
 
 ```
 [
-	tx_id：对方腾讯用户id
+	im_id：对方腾讯用户id
 ]
 
 {
-	number：用户app号
-	custom_id：用户appid
+	app_id：用户APPid
 	pretty_id：用户靓号id
+	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
 }
 ```
 
