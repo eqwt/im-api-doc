@@ -32,9 +32,6 @@ token刷新：如响应头中有Authorization，则刷新token
 
 参数：
 [
-	is_open_mobile_search：是否开启手机号搜索
-	is_open_app_id_search：是否开启APPID搜索
-	is_bind_device：是否绑定当前设备，默认0
 	....
 ]
 ```
