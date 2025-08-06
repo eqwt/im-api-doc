@@ -17,6 +17,9 @@ token刷新：如响应头中有Authorization，则刷新token
 {接口文字描述}  {路由}  {请求方法}
 [] 请求参数
 {} 响应参数，只会描述data部分
+
+一般约定：
+is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ```
 
 # IM自定义字段-----待定
@@ -99,6 +102,12 @@ token刷新：如响应头中有Authorization，则刷新token
 	pretty_id：用户靓号id
 	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
 	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
+	is_open_mobile_search：是否开启手机搜索
+	is_open_app_id_search：是否开启ID搜索
+	is_open_group_add：是否开启群聊添加
+	is_open_name_card_add：是否开启名片添加
+	is_bind_device：是否绑定当前设备
+	is_only_code_login：是否仅验证码登录
 }
 ```
 
