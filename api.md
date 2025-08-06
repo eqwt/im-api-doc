@@ -111,6 +111,15 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
+## 更新用户信息  user  put
+
+```
+[
+	field：字段名(is_open_mobile_search、is_open_app_id_search、is_open_group_add、is_open_name_card_add、is_bind_device、is_only_code_login)
+	value：修改后的值，一般约定：is_ 开头的字段，表示是否xxx，取值：0=否 1=是
+]
+```
+
 ## 添加好友-搜索  friend/search  get
 
 ```
