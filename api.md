@@ -189,7 +189,25 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	new_password_confirmation：确认新密码
 	
 	// way=mobile 或 way=email
-	code：验证码（发送验证码参考上面 send_code）
+	code：验证码（发送验证码 type=update_pwd）
+]
+```
+
+### 绑定手机  user/bind_mobile  post
+
+```
+[
+	mobile：手机号
+	code：验证码（发送验证码 type=bind_mobile）
+]
+```
+
+### 绑定邮箱  user/bind_email  post
+
+```
+[
+	email：邮箱
+	code：验证码（发送验证码 type=bind_email）
 ]
 ```
 
