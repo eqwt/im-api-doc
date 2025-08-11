@@ -31,22 +31,45 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ## 用户字段
 
 ```
-字段名：
+字段名：Tag_Profile_Custom_UserR
 
 参数：
-[
-	....
-]
+{
+	level：会员等级
+	level_expires_at：会员到期时间
+	pretty_id：靓号id
+	pretty_id_level：靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	pretty_id_expires_at：靓号id过期时间
+	
+	is_open_mobile_search：是否开启手机搜索
+	is_open_app_id_search：是否开启ID搜索
+	is_open_group_add：是否开启群聊添加
+	is_open_name_card_add：是否开启名片添加
+	is_bind_device：是否绑定当前设备
+	is_only_code_login：是否仅验证码登录
+	
+	updated_at：用户更新ID的时间，用于查看好友信息时本地缓存比对
+}
 ```
 
 ## 群组字段
 
 ```
+字段名：GroupR
+{
+	level：VIP等级
+	level_expires_at：VIP到期时间
+	pretty_id：靓号id
+	pretty_id_level：靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	pretty_id_expires_at：靓号id过期时间
+}
 
-
-[
-
-]
+字段名：GroupRw
+{
+	is_ban_revoke：是否禁止群成员撤回
+	is_ban_mutual_add：是否禁止群成员互加
+	is_popup_notice：是否弹窗提示公告
+}
 ```
 
 # API
@@ -115,9 +138,25 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 ```
 [
-	field：字段名(is_open_mobile_search、is_open_app_id_search、is_open_group_add、is_open_name_card_add、is_bind_device、is_only_code_login)
-	value：修改后的值，一般约定：is_ 开头的字段，表示是否xxx，取值：0=否 1=是
+	nickname：昵称
+	is_open_mobile_search：是否开启手机搜索
+	is_open_app_id_search：是否开启ID搜索
+	is_open_group_add：是否开启群聊添加
+	is_open_name_card_add：是否开启名片添加
+	is_bind_device：是否绑定当前设备
+	is_only_code_login：是否仅验证码登录
 ]
+```
+
+## 上传头像  user/avatar  post
+
+```
+[
+	file：文件二进制流
+]
+{
+	url：上传后地址
+}
 ```
 
 ## 添加好友-搜索  friend/search  get
@@ -185,6 +224,20 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 {
 	number：群号码
+}
+```
+
+## 搜索群  group/search  get
+
+```
+说明：用户搜索群号时，如果群号长度<9位,请求接口；>=9位,请求腾讯
+
+[
+	pretty_id：搜索群号
+]
+
+{
+	number：IM群号
 }
 ```
 
