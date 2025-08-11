@@ -74,7 +74,9 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 # API
 
-## 注册  register  post
+# 登录注册
+
+### 注册  register  post
 
 ```
 [
@@ -87,7 +89,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-## 登录  login  post
+### 登录  login  post
 
 ```
 [
@@ -106,16 +108,22 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 获取验证码  send_code  post
+### 获取验证码  send_code  post
 
 ```
+说明：
+1. 无需登录的验证码(比如：登录、注册、找回密码)
+2. 如用户登录后发送验证码，请求头需要token(比如：修改手机号、邮箱、修改登录密码)
+
 [
-	type：类型(register=注册 login=登录)
+	type：类型(register=注册 login=登录 update_pwd=修改登录密码 bind_mobile=绑定手机 bind_email=绑定邮箱 update_mobile=修改手机号 update_email=修改邮箱 forget_pwd=找回密码)
 	account：账号(手机/邮箱)
 ]
 ```
 
-## 登录用户信息  user  get
+## 用户相关
+
+### 登录用户信息  user  get
 
 ```
 {
@@ -134,7 +142,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 更新用户信息  user  put
+### 更新用户信息  user  put
 
 ```
 [
@@ -148,7 +156,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-## 上传头像  user/avatar  post
+### 上传头像  user/avatar  post
 
 ```
 [
@@ -159,7 +167,35 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 添加好友-搜索  friend/search  get
+### 修改app_id  user/app_id  put
+
+```
+说明：用户level必须是会员，才可以修改
+
+[
+	app_id：新appId
+]
+```
+
+### 修改登录密码  user/password  put
+
+```
+[
+	way：验证方式(pwd=原密码验证 mobile=手机验证 email=邮箱验证)
+	
+	// way=pwd
+	old_password：旧密码
+	new_password：新密码
+	new_password_confirmation：确认新密码
+	
+	// way=mobile 或 way=email
+	code：验证码（发送验证码参考上面 send_code）
+]
+```
+
+## 好友相关
+
+### 添加好友-搜索  friend/search  get
 
 ```
 [
@@ -175,7 +211,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 添加好友-提交  friend/add  post
+### 添加好友-提交  friend/add  post
 
 ```
 [
@@ -199,7 +235,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-## 好友详情  friend/info  get
+### 好友详情  friend/info  get
 
 ```
 [
@@ -214,7 +250,9 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 创建群  group  post
+## 群相关
+
+### 创建群  group  post
 
 ```
 [
@@ -227,7 +265,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 搜索群  group/search  get
+### 搜索群  group/search  get
 
 ```
 说明：用户搜索群号时，如果群号长度<9位,请求接口；>=9位,请求腾讯
