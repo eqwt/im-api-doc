@@ -116,8 +116,20 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 2. 如用户登录后发送验证码，请求头需要token(比如：修改手机号、邮箱、修改登录密码)
 
 [
-	type：类型(register=注册 login=登录 update_pwd=修改登录密码 bind_mobile=绑定手机 bind_email=绑定邮箱 update_mobile=修改手机号 update_email=修改邮箱 forget_pwd=找回密码)
+	type：类型(register=注册 login=登录 update_pwd=修改登录密码 bind_mobile=绑定手机 bind_email=绑定邮箱 update_mobile_old=修改手机号-原手机号验证 update_mobile_new=修改手机号-新手机号验证 update_email_old=修改邮箱-原邮箱验证 update_email_new=修改邮箱-新邮箱验证 forget_pwd=找回密码)
 	account：账号(手机/邮箱)
+]
+```
+
+### 找回密码  forget_pwd  post
+
+```
+[
+	way：验证方式(mobile=手机 email=邮箱)
+	account：账号(手机或邮箱号，与验证方式联动)
+	code：验证码(发送验证码 type=forget_pwd)
+	password：新密码
+	password_confirmation：确认新密码
 ]
 ```
 
@@ -209,6 +221,49 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	email：邮箱
 	code：验证码（发送验证码 type=bind_email）
 ]
+```
+
+### 修改手机  user/update_mobile  put
+
+```
+[
+	step：步骤(1=第一步 2=第二步)
+	
+	// step=1
+	old_code：验证码(第一步，发送验证码 type=update_mobile_old)
+	
+	// step=2
+	token：第一步提交成功时返回
+	new_mobile：新手机号
+	new_code：验证码(第二步，发送验证码 type=update_mobile_new)
+]
+
+{
+	// step=1
+	token：临时步骤token
+}
+```
+
+### 修改邮箱  user/email  put
+
+```
+[
+	step：步骤(1=第一步 2=第二步)
+	way：验证方式(mobile=原手机号 email=原邮箱)
+	
+	// step=1
+	old_code：验证码(第一步，发送验证码 type=update_email_old)
+	
+	// step=2
+	token：第一步提交成功时返回
+	new_email：新邮箱
+	new_code：验证码(第二步，发送验证码 type=update_email_new)
+]
+
+{
+	// step=1
+	token：临时步骤token
+}
 ```
 
 ## 好友相关
