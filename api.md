@@ -159,6 +159,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ```
 [
 	nickname：昵称
+	signature：签名
 	is_open_mobile_search：是否开启手机搜索
 	is_open_app_id_search：是否开启ID搜索
 	is_open_group_add：是否开启群聊添加
