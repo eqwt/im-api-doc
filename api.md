@@ -37,16 +37,8 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 {
 	level：会员等级
 	level_expires_at：会员到期时间
-	pretty_id：靓号id
-	pretty_id_level：靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	pretty_id_level：靓号id等级(0=非靓号 1=普通靓号 2=黑金靓号)
 	pretty_id_expires_at：靓号id过期时间
-	
-	is_open_mobile_search：是否开启手机搜索
-	is_open_app_id_search：是否开启ID搜索
-	is_open_group_add：是否开启群聊添加
-	is_open_name_card_add：是否开启名片添加
-	is_bind_device：是否绑定当前设备
-	is_only_code_login：是否仅验证码登录
 	
 	updated_at：用户更新ID的时间，用于查看好友信息时本地缓存比对
 }
@@ -60,7 +52,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	level：VIP等级
 	level_expires_at：VIP到期时间
 	pretty_id：靓号id
-	pretty_id_level：靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
+	pretty_id_level：靓号id等级(0=非靓号 1=普通靓号 2=黑金靓号)
 	pretty_id_expires_at：靓号id过期时间
 }
 
@@ -143,8 +135,8 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	mobile：手机
 	email：邮箱
 	pretty_id：用户靓号id
-	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
-	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
+	pretty_id_level：用户靓号id等级(0=非靓号 1=普通靓号 2=黑金靓号)
+	level：用户VIP等级(0=非会员 1=VIP 2=SVIP)
 	is_open_mobile_search：是否开启手机搜索
 	is_open_app_id_search：是否开启ID搜索
 	is_open_group_add：是否开启群聊添加
@@ -174,7 +166,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 ```
 [
-	file：文件二进制流
+	file：文件二进制流，如重置为默认头像传空值
 ]
 {
 	url：上传后地址
@@ -184,8 +176,6 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ### 修改app_id  user/app_id  put
 
 ```
-说明：用户level必须是会员，才可以修改
-
 [
 	app_id：新appId
 ]
@@ -194,6 +184,8 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ### 修改登录密码  user/password  put
 
 ```
+修改成功后，清空缓存，退出登录
+
 [
 	way：验证方式(pwd=原密码验证 mobile=手机验证 email=邮箱验证)
 	
@@ -281,8 +273,6 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	im_id：IM用户id
 	app_id：用户APPid
 	pretty_id：用户靓号id
-	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
-	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
 }
 ```
 
@@ -320,8 +310,6 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 {
 	app_id：用户APPid
 	pretty_id：用户靓号id
-	pretty_id_level：用户靓号id等级(1=非靓号 2=普通靓号 3=黑金靓号)
-	level：用户VIP等级(1=非会员 2=VIP 3=SVIP)
 }
 ```
 
@@ -354,3 +342,15 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
+### 上传头像  group/avatar  post
+
+```
+[
+	file：文件二进制流，如重置为默认头像传空值
+]
+{
+	url：上传后地址
+}
+```
+
+### 
