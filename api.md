@@ -289,14 +289,14 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	
 	// type=1时
 	account：账号(搜索时填写的参数带过来)
-	im_id：对方腾讯用户id
+	im_id：对方Imid
 	
 	// type=2时
 	group_number：群号码
 	im_id：对方腾讯用户id
 	
-	// type=3时，待定------------
-	
+	// type=3时
+	friend_im_id：好友ImId
 ]
 ```
 
