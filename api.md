@@ -61,6 +61,8 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	is_ban_revoke：是否禁止群成员撤回
 	is_ban_mutual_add：是否禁止群成员互加
 	is_popup_notice：是否弹窗提示公告
+	is_only_text_msg：是否只能发送文本
+	is_ban_invite：是否禁止群成员邀请
 }
 ```
 
