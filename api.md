@@ -298,7 +298,8 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	im_id：对方腾讯用户id
 	
 	// type=3时
-	friend_im_id：好友ImId
+	account：对方账号(名片所属账号)
+	im_id：对方Imid
 ]
 ```
 
