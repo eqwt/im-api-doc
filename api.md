@@ -307,13 +307,22 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 ```
 [
-	im_id：对方腾讯用户id
+	im_id：对方IMID
 ]
 
 {
 	app_id：用户APPid
 	pretty_id：用户靓号id
 }
+```
+
+## 好友备注  friend/remark  post
+
+```
+[
+	im_id：好友IMID
+	remark：备注，可空
+]
 ```
 
 ## 群相关
