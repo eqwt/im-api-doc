@@ -143,8 +143,6 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	is_open_app_id_search：是否开启ID搜索
 	is_open_group_add：是否开启群聊添加
 	is_open_name_card_add：是否开启名片添加
-	is_bind_device：是否绑定当前设备
-	is_only_code_login：是否仅验证码登录
 }
 ```
 
@@ -159,8 +157,6 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	is_open_app_id_search：是否开启ID搜索
 	is_open_group_add：是否开启群聊添加
 	is_open_name_card_add：是否开启名片添加
-	is_bind_device：是否绑定当前设备
-	is_only_code_login：是否仅验证码登录
 ]
 ```
 
