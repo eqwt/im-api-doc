@@ -66,11 +66,11 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-# API
+# --------API--------
 
 # 登录注册
 
-### 注册  register  post
+## 注册  register  post
 
 ```
 [
@@ -83,7 +83,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 登录  login  post
+## 登录  login  post
 
 ```
 [
@@ -102,7 +102,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 获取验证码  send_code  post
+## 获取验证码  send_code  post
 
 ```
 说明：
@@ -115,7 +115,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 找回密码  forget_pwd  post
+## 找回密码  forget_pwd  post
 
 ```
 [
@@ -127,9 +127,9 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-## 用户相关
+# 用户相关
 
-### 登录用户信息  user  get
+## 登录用户信息  user  get
 
 ```
 {
@@ -148,7 +148,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 更新用户信息  user  put
+## 更新用户信息  user  put
 
 ```
 [
@@ -164,7 +164,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 上传头像  user/avatar  post
+## 上传头像  user/avatar  post
 
 ```
 [
@@ -175,7 +175,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 修改app_id  user/app_id  put
+## 修改app_id  user/app_id  put
 
 ```
 [
@@ -183,7 +183,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 修改登录密码  user/password  put
+## 修改登录密码  user/password  put
 
 ```
 修改成功后，清空缓存，退出登录
@@ -201,7 +201,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 绑定手机  user/bind_mobile  post
+## 绑定手机  user/bind_mobile  post
 
 ```
 [
@@ -210,7 +210,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 绑定邮箱  user/bind_email  post
+## 绑定邮箱  user/bind_email  post
 
 ```
 [
@@ -219,7 +219,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 修改手机  user/update_mobile  put
+## 修改手机  user/update_mobile  put
 
 ```
 [
@@ -240,7 +240,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 修改邮箱  user/email  put
+## 修改邮箱  user/email  put
 
 ```
 [
@@ -262,9 +262,28 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-## 好友相关
+# 设备管理
 
-### 添加好友-搜索  friend/search  get
+## 设备列表  device  get
+
+```
+[
+	id：
+	device_id：设备标识
+	platform：登录平台
+	login_ip：最后登录IP
+	login_at：最后登录时间
+	is_trusted：是否信任
+]
+```
+
+## 设置信任  device/{id}  put
+
+## 删除设备  device/{id}  delete
+
+# 好友相关
+
+## 添加好友-搜索  friend/search  get
 
 ```
 [
@@ -278,7 +297,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 添加好友-提交  friend/add  post
+## 添加好友-提交  friend/add  post
 
 ```
 [
@@ -303,7 +322,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-### 好友详情  friend/info  get
+## 好友详情  friend/info  get
 
 ```
 [
@@ -325,9 +344,9 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-## 群相关
+# 群相关
 
-### 创建群  group  post
+## 创建群  group  post
 
 ```
 [
@@ -340,7 +359,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 搜索群  group/search  get
+## 搜索群  group/search  get
 
 ```
 说明：可能会有群号长度区分是否请求接口或腾讯，等后面确认
@@ -354,7 +373,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 }
 ```
 
-### 上传头像  group/avatar  post
+## 上传头像  group/avatar  post
 
 ```
 [
@@ -364,5 +383,3 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	url：上传后地址
 }
 ```
-
-### 
