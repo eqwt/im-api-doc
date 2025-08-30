@@ -89,6 +89,9 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 [
 	way：登录方式(pwd=密码登录 code=验证码登录)
 	device_id：设备码
+	platform：平台类型，取值(iPhone、Android、Web、PC、iPad、Mac)
+	device_name：设备名称
+	device_version：系统版本
 	username：用户名，手机或邮箱
 	password：密码，way=pwd时必须
 	code：验证码，way=code时必须，测试暂时用123456
