@@ -272,11 +272,8 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	platform：登录平台
 	login_ip：最后登录IP
 	login_at：最后登录时间
-	is_trusted：是否信任
 ]
 ```
-
-## 设置信任  device/{id}  put
 
 ## 删除设备  device/{id}  delete
 
