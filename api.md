@@ -108,7 +108,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	is_trusted：是否信任，当登录方式pwd时，非信任设备(is_trusted=0)时需要二次验证
 	
 	// 当登录方式pwd时，需要验证时
-	verify_ways:[] 可用验证方式(mobile=手机验证,验证码type=login email=邮箱验证,验证码type=login old_device=原设备验证,验证码type=login_old_device)，数组
+	verify_ways:[] 可用验证方式(mobile=手机验证 email=邮箱验证 old_device=原设备验证；验证码type=login_2fa，verify_way=验证方式)，数组
 
 	// 登录成功响应
 	token：登录token
@@ -130,8 +130,10 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 		bind_email=绑定邮箱 update_mobile_old=修改手机号-原手机号验证 				
 		update_mobile_new=修改手机号-新手机号验证 update_email_old=修改邮箱-原邮箱验证
         update_email_new=修改邮箱-新邮箱验证 forget_pwd=找回密码)
-	
+        
 	account：账号(手机/邮箱)
+	
+	verify_way：验证方式，可空，比如：type=login_2fa时需要
 ]
 ```
 
@@ -283,18 +285,20 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ## 设备列表  device  get
 
 ```
-[
-	device_id：设备码
-	im_device_id：IM设备唯一标识
-	platform：登录平台
-	name：设备名称
-	version：系统版本
-	login_ip：最后登录IP
-	login_at：最后登录时间
-	is_online：是否在线
-	is_trusted：是否信任
-	is_login：是否登录中
-]
+{
+	// 在线设备
+	online：{
+        device_id：设备码，在线设备中判断该字段为空时标记异常
+        platform：登录平台
+        name：设备名称
+        version：系统版本
+        login_ip：最后登录IP
+        login_at：最后登录时间
+	}
+	
+	// 离线设备
+	offline: {与上面的一样}
+}
 ```
 
 ## 注销所有在线账号  device/logoff  put
