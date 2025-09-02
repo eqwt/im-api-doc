@@ -35,10 +35,12 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 参数：
 {
+	type：用户类型(1=普通账号 2=内部账号 3=僵尸账号)
 	level：会员等级
 	level_expires_at：会员到期时间
 	pretty_id_level：靓号id等级(0=非靓号 1=普通靓号 2=黑金靓号)
 	pretty_id_expires_at：靓号id过期时间
+	state：用户状态(1=正常 2=疑似盗号)
 	
 	updated_at：用户更新ID的时间，用于查看好友信息时本地缓存比对
 }
@@ -108,7 +110,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	is_trusted：是否信任，当登录方式pwd时，非信任设备(is_trusted=0)时需要二次验证
 	
 	// 当登录方式pwd时，需要验证时
-	verify_ways:[] 可用验证方式(mobile=手机验证 email=邮箱验证 old_device=原设备验证；验证码type=login_2fa，verify_way=验证方式)，数组
+	verify_ways:[] 可用验证方式(mobile=手机验证 email=邮箱验证 old_device=原设备验证 google_auth=谷歌验证；验证码type=login_2fa，verify_way=验证方式，谷歌验证无需发送)，数组
 
 	// 登录成功响应
 	token：登录token
@@ -278,6 +280,38 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	// step=1
 	token：临时步骤token
 }
+```
+
+## 绑定谷歌验证  user/bind_google_auth  put
+
+```
+[
+	step：步骤(1=第一步 2=第二步)
+	way：验证方式(mobile=手机 email=邮箱)
+	
+	// step=1
+	old_code：验证码(第一步，发送验证码 type=bind_google_auth)
+	
+	// step=2
+	token：第一步提交成功时返回
+	google_key：谷歌秘钥(第一步提交成功时返回)
+	new_code：谷歌验证码
+]
+
+{
+	// step=1
+	token：临时步骤token
+	google_key：谷歌秘钥
+}
+```
+
+## 解绑谷歌验证  user/unbind_google_auth  put
+
+```
+[
+	way：验证方式(mobile=手机 email=邮箱)
+	code：验证码(发送验证码 type=unbind_google_auth)
+]
 ```
 
 # 设备管理
