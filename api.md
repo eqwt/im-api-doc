@@ -167,6 +167,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	is_open_app_id_search：是否开启ID搜索
 	is_open_group_add：是否开启群聊添加
 	is_open_name_card_add：是否开启名片添加
+	is_bind_google_auth：是否绑定谷歌验证
 }
 ```
 
