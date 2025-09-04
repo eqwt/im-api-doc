@@ -137,9 +137,9 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 		update_mobile_new=修改手机号-新手机号验证 update_email_old=修改邮箱-原邮箱验证
         update_email_new=修改邮箱-新邮箱验证 forget_pwd=找回密码)
         
-	account：账号(手机/邮箱)
-	
-	verify_way：验证方式，可空，比如：type=login_2fa时需要
+	verify_way：验证方式(mobile=手机 email=邮箱 old_device=原设备)
+        
+	account：账号(手机/邮箱)，登录后无需该字段
 ]
 ```
 
@@ -179,9 +179,6 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 
 ```
 [
-	nickname：昵称
-	avatar：头像
-	signature：签名
 	is_open_mobile_search：是否开启手机搜索
 	is_open_app_id_search：是否开启ID搜索
 	is_open_group_add：是否开启群聊添加
