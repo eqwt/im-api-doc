@@ -77,6 +77,10 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ```
 [
 	way：注册方式(mobile=手机 email=邮箱)
+	device_id：设备码
+	platform：平台类型，取值(iPhone、Android、Web、PC、iPad、Mac)
+	device_name：设备名称
+	device_version：系统版本
 	mobile：手机，way=mobile时必须
 	email：邮箱，way=email时必须
 	code：验证码，测试暂时用123456
