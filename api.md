@@ -140,6 +140,10 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	verify_way：验证方式(mobile=手机 email=邮箱 old_device=原设备)
         
 	account：账号(手机/邮箱)，登录后无需该字段
+	
+	// verify_way=old_device
+	platform：平台类型，取值(iPhone、Android、Web、PC、iPad、Mac)
+	device_name：设备名称
 ]
 ```
 
