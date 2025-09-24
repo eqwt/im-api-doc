@@ -89,7 +89,7 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 ]
 ```
 
-## 登录  login  post
+## 常规登录  login  post
 
 ```
 [
@@ -123,6 +123,29 @@ is_ 开头的字段，表示：是否xxx，取值：0=否 1=是
 	im_id：IM用户id
 }
 ```
+
+## 开放登录  open_login  post
+
+```
+[
+	device_id：设备码
+	platform：平台类型，取值(iPhone、Android、Web、PC、iPad、Mac)
+	device_name：设备名称
+	device_version：系统版本
+	username：用户名
+	password：密码
+]
+
+{
+	// 登录成功响应
+	token：登录token
+	user_sig：IMSDK UserSig
+	im_appid：IMSDK appid
+	im_id：IM用户id
+}
+```
+
+
 
 ## 获取验证码  send_code  post
 
