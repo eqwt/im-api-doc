@@ -21,6 +21,8 @@
 
 扩展字段：json字符串
 {
+	app_name：APP名称
+	app_version：APP版本
 	action：register
 	username：账号
 	nickname：昵称
@@ -52,6 +54,9 @@
 ```
 请求扩展字段(在需要二次验证时)：
 {
+	app_name：APP名称
+	app_version：APP版本
+	
 	verify_way：验证方式(1=原设备验证 2=安全密码验证)
 	
 	// verify_way=1时，
@@ -85,6 +90,9 @@
 
 扩展字段：json字符串
 {
+	app_name：APP名称
+	app_version：APP版本
+	
 	action：forget_pwd
 	username：账号
 	safe_pwd：安全密码
