@@ -259,10 +259,8 @@
 
 请求扩展字段
 {
-	action：send_red_packet
-	team_id：群id
-	amount：总金额
-	num：红包个数
+	action：grab_red_packet
+	msg_id：消息id
 }
 
 响应：
