@@ -205,12 +205,17 @@
 红包消息使用的是自定义消息，自定义内容如下：
 {
 	type：red_packet, // 消息类型：红包
+	sub_type：红包类型（personal=个人红包 group_lucky=群拼手气红包 group_normal=群普通红包 group_exclusive=群专属红包）
 	username：发包人账号
+	team_id：群id(群红包 存在)
+	to_username：接收人账号(个人红包 或 群专属红包 存在)
 	amount：总红包金额
 	remain_amount：剩余红包金额
 	num：总红包个数
 	remain_num：剩余红包个数
+	remark：祝福语
 	expired_ts：过期时间戳
+	state：
 	// 抢包详情
 	receivers：[
 		{
@@ -231,9 +236,30 @@
 请求扩展字段
 {
 	action：send_red_packet
+	type：红包类型（personal=个人红包 group_lucky=群拼手气红包 group_normal=群普通红包 group_exclusive=群专属红包）
+	
+	// 个人红包
+	to_username：接收人账号
+	amount：总金额
+	remark：祝福语，非必填
+	
+	// 群拼手气红包
 	team_id：群id
 	amount：总金额
-	num：红包数量
+	num：红包个数
+	remark：祝福语，非必填
+	
+	// 群普通红包
+	team_id：群号
+	single_amount：单个金额
+	num：红包个数
+	remark：祝福语，非必填
+	
+	// 群专属红包
+	team_id：群号
+	to_username：指定账号
+	amount：总金额
+	remark：祝福语，非必填
 }
 
 响应：
@@ -243,12 +269,15 @@
   
   // 状态码定义
   20000：发送成功
-  20001：群id不能为空
-  20002：红包金额格式不正确
-  20003：红包数量格式不正确
-  20004：红包数量超出限制
-  20005：余额不足
-  20006：非群成员
+  20001：红包类型非法
+  20002：群号非法或不存在
+  20003：接收人非法或不存在
+  20004：红包金额格式非法
+  20005：红包数量格式非法
+  20006：红包数量超限
+  20007：祝福语字符数超限
+  20008：余额不足
+  20009：非法操作
 }
 ```
 
@@ -273,6 +302,91 @@
   20001：红包不存在
   20002：红包已抢完
   20003：红包已过期
+  20009：非法操作
+}
+```
+
+# 转账
+
+## 转账消息说明
+
+```
+转账消息使用的是自定义消息，自定义内容如下：
+{
+	type：transfer, // 消息类型：转账
+	sub_type：转账类型（personal=个人转账 group=群转账）
+	username：发包人账号
+	to_username：接收人账号
+	team_id：群id（群转账时必填）
+	amount：转账金额
+	remark：转账备注
+	expired_ts：过期时间戳
+	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
+}
+```
+
+## 转出
+
+```
+！使用更新用户资料API中扩展字段
+
+请求扩展字段
+{
+	action：send_transfer
+	type：转账类型（personal=个人转账 group=群转账）
+	
+	// 个人转账
+	to_username：接收人账号
+	amount：金额
+	remark：备注，非必填
+	
+	// 群转账
+	team_id：群id
+	to_username：接收人账号
+	amount：金额
+	remark：备注，非必填
+}
+
+响应：
+{
+  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
+  "responseCode": 状态码
+  
+  // 状态码定义
+  20000：发送成功
+  20001：转账类型非法
+  20002：接收人非法或不存在
+  20003：群号非法或不存在
+  20004：转账金额格式非法
+  20005：备注字符数超限
+  20006：余额不足
+  20009：非法操作
+}
+```
+
+## 接收
+
+```
+！使用更新用户资料API中扩展字段
+
+请求扩展字段
+{
+	action：receive_transfer
+	msg_id：消息id
+}
+
+响应：
+{
+  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
+  "responseCode": 状态码
+  
+  // 状态码定义
+  20000：成功
+  20001：转账不存在
+  20002：已接收
+  20003：已退还
+  20004：已过期
+  20009：非法操作
 }
 ```
 
@@ -305,3 +419,4 @@
 }
 ```
 
+， 
