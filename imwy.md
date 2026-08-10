@@ -206,6 +206,7 @@
 {
 	type：red_packet, // 消息类型：红包
 	sub_type：红包类型（personal=个人红包 group_lucky=群拼手气红包 group_normal=群普通红包 group_exclusive=群专属红包）
+	trade_no：单号
 	username：发包人账号
 	team_id：群id(群红包 存在)
 	to_username：接收人账号(个人红包 或 群专属红包 存在)
@@ -215,7 +216,6 @@
 	remain_num：剩余红包个数
 	remark：祝福语
 	expired_ts：过期时间戳
-	state：
 	// 抢包详情
 	receivers：[
 		{
@@ -289,7 +289,7 @@
 请求扩展字段
 {
 	action：grab_red_packet
-	msg_id：消息id
+	trade_no：红包单号
 }
 
 响应：
@@ -315,6 +315,7 @@
 {
 	type：transfer, // 消息类型：转账
 	sub_type：转账类型（personal=个人转账 group=群转账）
+	trade_no：单号
 	username：发包人账号
 	to_username：接收人账号
 	team_id：群id（群转账时必填）
@@ -372,7 +373,7 @@
 请求扩展字段
 {
 	action：receive_transfer
-	msg_id：消息id
+	trade_no：转账单号
 }
 
 响应：
@@ -398,7 +399,7 @@
 请求扩展字段
 {
 	action：reject_transfer
-	msg_id：消息id
+	trade_no：转账单号
 }
 
 响应：
