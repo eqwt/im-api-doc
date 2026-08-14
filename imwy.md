@@ -312,7 +312,7 @@
 ## 转账消息说明
 
 ```
-转账消息使用的是自定义消息，自定义内容如下：
+消息使用的是自定义消息，自定义内容如下：
 {
 	type：transfer, // 消息类型：转账
 	sub_type：转账类型（personal=个人转账 group=群转账）
@@ -324,6 +324,24 @@
 	remark：转账备注
 	expired_ts：过期时间戳
 	received_at：收款时间戳
+	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
+}
+```
+
+## 转账退还消息
+
+```
+消息使用的是自定义消息，自定义内容如下：
+{
+	type：transfer_rejected, // 消息类型：转账退还
+	sub_type：转账类型（personal=个人转账 group=群转账）
+	trade_no：单号
+	username：发包人账号
+	to_username：接收人账号
+	team_id：群id（群转账时必填）
+	amount：转账金额
+	remark：转账备注
+	expired_ts：过期时间戳
 	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
 }
 ```
