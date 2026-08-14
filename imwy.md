@@ -302,6 +302,7 @@
   20001：红包不存在
   20002：红包已抢完
   20003：红包已过期
+  20004：红包已领取
   20009：非法操作
 }
 ```
@@ -322,6 +323,7 @@
 	amount：转账金额
 	remark：转账备注
 	expired_ts：过期时间戳
+	received_at：收款时间戳
 	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
 }
 ```
