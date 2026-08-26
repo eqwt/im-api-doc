@@ -456,6 +456,88 @@
 }
 ```
 
+# 福袋
+
+## 介绍说明
+
+```
+1. 只能群主发
+2. 福袋信息字段：customer_extension
+3. 福袋结果字段：intro
+
+// 福袋信息(json字符串)
+customer_extension: {
+	id：福袋id
+	prize_name：奖品名称
+	num：中奖人数
+	join_num：参与人数
+	draw_ts：开奖时间戳
+}
+
+// 福袋结果(json字符串)
+intro：{
+	id：福袋id
+	// 中奖人
+	winners：[
+		'user1','user2',...
+	]
+}
+```
+
+## 发送
+
+```
+！使用更新用户资料API中扩展字段
+
+请求扩展字段
+{
+	action：send_lucky_bag
+	team_id：群id
+	prize_name：奖品名称
+	num：中奖人数，取值：1-20
+	duration：时长，单位分钟，取值：1-99
+}
+
+响应：
+{
+  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
+  "responseCode": 状态码
+  
+  // 状态码定义
+  20000：成功
+  20001：群号非法或不存在
+  20002：奖品名称字符数超出限制
+  20003：中奖人数格式不正确
+  20004：时长格式不正确
+  20005：有进行中的福袋
+  20009：非法操作
+}
+```
+
+## 参与
+
+```
+！使用更新用户资料API中扩展字段
+
+请求扩展字段
+{
+	action：join_lucky_bag
+	lucky_bag_id：福袋id
+}
+
+响应：
+{
+  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
+  "responseCode": 状态码
+  
+  // 状态码定义
+  20000：成功
+  20001：福袋不存在
+  20002：福袋已结束
+  20009：非法操作
+}
+```
+
 # 其它
 
 ## 创建群
