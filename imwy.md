@@ -317,12 +317,64 @@
   "responseCode": 状态码
   
   // 状态码定义
-  20000：抢包成功
+  20000：成功
   20001：红包不存在
   20002：红包已抢完
   20003：红包已过期
   20004：红包已领取
   20009：非法操作
+}
+```
+
+## 红包记录
+
+```
+！使用更新用户资料API中扩展字段
+！结果会发送至指定账号，读取消息
+
+请求扩展字段
+{
+	action：get_red_packets
+}
+
+响应：
+{
+  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
+  "responseCode": 状态码
+  
+  // 状态码定义
+  20000：成功
+}
+
+// 消息数据格式
+{
+	type：red_packets // 类型：红包记录
+	// 列表
+	items：[
+		{
+			type：红包类型（personal=个人红包 group_lucky=群拼手气红包 group_normal=群普通红包 group_exclusive=群专属红包）
+            trade_no：单号
+            username：发包人账号
+            team_id：群id(群红包 存在)
+            to_username：接收人账号(个人红包 或 群专属红包 存在)
+            amount：总红包金额
+            remain_amount：剩余红包金额
+            num：总红包个数
+            remain_num：剩余红包个数
+            remark：祝福语
+            expired_ts：过期时间戳
+            // 抢包详情
+            receivers：[
+                {
+                    username：收包人账号
+                    bonus：抢包金额
+                    ts：抢包时间戳
+                }
+                ...
+            ]
+		}
+		...
+	]
 }
 ```
 
@@ -333,7 +385,7 @@
 ```
 消息使用的是自定义消息，自定义内容如下：
 {
-	type：transfer, // 消息类型：转账
+	type：transfer, // 消息类型：transfer=转账 transfer_received=转账接收 transfer_rejected=转账退还
 	sub_type：转账类型（personal=个人转账 group=群转账）
 	trade_no：单号
 	username：发包人账号
@@ -342,25 +394,7 @@
 	amount：转账金额
 	remark：转账备注
 	expired_ts：过期时间戳
-	received_at：收款时间戳
-	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
-}
-```
-
-## 转账退还消息
-
-```
-消息使用的是自定义消息，自定义内容如下：
-{
-	type：transfer_rejected, // 消息类型：转账退还
-	sub_type：转账类型（personal=个人转账 group=群转账）
-	trade_no：单号
-	username：发包人账号
-	to_username：接收人账号
-	team_id：群id（群转账时必填）
-	amount：转账金额
-	remark：转账备注
-	expired_ts：过期时间戳
+	finished_ts：完成时间戳(根据当前状态判断对应 接收时间、退还时间、退款时间)
 	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
 }
 ```
@@ -470,7 +504,7 @@ customer_extension: {
 	id：福袋id
 	prize_name：奖品名称
 	num：中奖人数
-	join_num：参与人数
+	join_num：已参与人数
 	draw_ts：开奖时间戳
 }
 
@@ -496,6 +530,9 @@ intro：{
 	prize_name：奖品名称
 	num：中奖人数，取值：1-20
 	duration：时长，单位分钟，取值：1-99
+	limit_level：参与条件(即限制的账号等级)，非必填(默认无限制)，可多选(数组格式)
+	join_code：参与口令
+	fixed_winners：内定账号，非必填，数组格式
 }
 
 响应：
@@ -510,6 +547,8 @@ intro：{
   20003：中奖人数格式不正确
   20004：时长格式不正确
   20005：有进行中的福袋
+  20006：参与条件非法
+  20007：内定账号非法
   20009：非法操作
 }
 ```
@@ -534,6 +573,7 @@ intro：{
   20000：成功
   20001：福袋不存在
   20002：福袋已结束
+  20003：不符合参与条件
   20009：非法操作
 }
 ```
