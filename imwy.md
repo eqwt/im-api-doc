@@ -504,6 +504,8 @@ customer_extension: {
 	id：福袋id
 	prize_name：奖品名称
 	num：中奖人数
+	limit_levels：参与条件
+	join_code：参与口令
 	join_num：已参与人数
 	draw_ts：开奖时间戳
 }
@@ -530,7 +532,7 @@ intro：{
 	prize_name：奖品名称
 	num：中奖人数，取值：1-20
 	duration：时长，单位分钟，取值：1-99
-	limit_level：参与条件(即限制的账号等级)，非必填(默认无限制)，可多选(数组格式)
+	limit_levels：参与条件(即限制的账号等级)，非必填(默认无限制)，可多选(数组格式)
 	join_code：参与口令
 	fixed_winners：内定账号，非必填，数组格式
 }
