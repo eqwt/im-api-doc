@@ -502,6 +502,7 @@
 // 福袋信息(json字符串)
 customer_extension: {
 	id：福袋id
+	trade_no：单号
 	prize_name：奖品名称
 	num：中奖人数
 	limit_levels：参与条件
@@ -513,6 +514,7 @@ customer_extension: {
 // 福袋结果(json字符串)
 intro：{
 	id：福袋id
+	trade_no：单号
 	// 中奖人
 	winners：[
 		'user1','user2',...
