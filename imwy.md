@@ -234,7 +234,7 @@
 	num：总红包个数
 	remain_num：剩余红包个数
 	remark：祝福语
-	expired_ts：过期时间戳
+	state：状态（created=待领取 claimed=已抢完 refunded=已过期(已退款)）
 	// 抢包详情
 	receivers：[
 		{
@@ -362,7 +362,6 @@
             num：总红包个数
             remain_num：剩余红包个数
             remark：祝福语
-            expired_ts：过期时间戳
             // 抢包详情
             receivers：[
                 {
@@ -393,9 +392,8 @@
 	team_id：群id（群转账时必填）
 	amount：转账金额
 	remark：转账备注
-	expired_ts：过期时间戳
 	finished_ts：完成时间戳(根据当前状态判断对应 接收时间、退还时间、退款时间)
-	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已退款）
+	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已过期(已退款)）
 }
 ```
 
@@ -501,7 +499,6 @@
 
 // 福袋信息(json字符串)
 customer_extension: {
-	id：福袋id
 	trade_no：单号
 	prize_name：奖品名称
 	num：中奖人数
@@ -566,7 +563,7 @@ intro：{
 请求扩展字段
 {
 	action：join_lucky_bag
-	lucky_bag_id：福袋id
+	trade_no：福袋单号
 }
 
 响应：
