@@ -255,12 +255,12 @@
 	remain_num：剩余红包个数
 	remark：祝福语
 	state：状态（created=待领取 claimed=已抢完 refunded=已过期(已退款)）
-	// 抢包详情
+	// 抢包详情(红包个数>100时，receivers值为文件url，再通过url获取，内容为json)
 	receivers：[
 		{
-			username：收包人账号
-			bonus：抢包金额
-			ts：抢包时间戳
+			u：收包人账号
+			b：抢包金额
+			t：抢包时间戳
 		}
 		...
 	]
@@ -346,56 +346,7 @@
 }
 ```
 
-## 红包记录
 
-```
-！使用更新用户资料API中扩展字段
-！结果会发送至指定账号，读取消息
-
-请求扩展字段
-{
-	action：get_red_packets
-}
-
-响应：
-{
-  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
-  "responseCode": 状态码
-  
-  // 状态码定义
-  20000：成功
-}
-
-// 消息数据格式
-{
-	type：red_packets // 类型：红包记录
-	// 列表
-	items：[
-		{
-			type：红包类型（personal=个人红包 group_lucky=群拼手气红包 group_normal=群普通红包 group_exclusive=群专属红包）
-            trade_no：单号
-            username：发包人账号
-            team_id：群id(群红包 存在)
-            to_username：接收人账号(个人红包 或 群专属红包 存在)
-            amount：总红包金额
-            remain_amount：剩余红包金额
-            num：总红包个数
-            remain_num：剩余红包个数
-            remark：祝福语
-            // 抢包详情
-            receivers：[
-                {
-                    username：收包人账号
-                    bonus：抢包金额
-                    ts：抢包时间戳
-                }
-                ...
-            ]
-		}
-		...
-	]
-}
-```
 
 # 转账
 
@@ -530,11 +481,10 @@ customer_extension: {
 	state：状态（created=进行中 drawn=已开奖）
 }
 
-// 福袋结果(json字符串)
-intro：{
-	id：福袋id
-	trade_no：单号
-	// 中奖人
+// 福袋结果(使用intro字段，值为文件url，再通过url获取，内容为json字符串)
+{
+	trade_no：福袋单号
+	// 中奖账号
 	winners：[
 		'user1','user2',...
 	]
@@ -632,4 +582,43 @@ intro：{
 }
 ```
 
-， 
+## 零钱记录
+
+```
+！使用更新用户资料API中扩展字段
+！结果会用指定账号(暂定：register)发送至用户
+
+请求扩展字段
+{
+	action：get_balance_logs
+	request_id：请求唯一标识，响应时附带该值，用于比对，客户端生成，建议20位字符内
+	last_id：最后id，非必须，用于加载更多
+}
+
+响应：
+{
+  "errCode": 1, // 固定返回 1，根据responseCode判断是否成功
+  "responseCode": 状态码
+  
+  // 状态码定义
+  20000：成功
+}
+
+// 消息数据格式（json字符串）
+{
+	action：get_balance_logs
+	request_id：请求标识
+	// 列表
+	items：[
+		{
+			id：
+			type：账变类型（recharge=充值 red_packet_send=发红包 red_packet_grab=抢红包 red_packet_refund=红包退款 transfer_send=转账 transfer_receive=转账接收 transfer_reject=转账退还 transfer_refund=转账退款）
+			change_money：变动金额
+            created_ts：账单时间戳
+		}
+		...
+	]
+}
+```
+
+# 
