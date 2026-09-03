@@ -475,7 +475,6 @@ customer_extension: {
 	num：中奖人数
 	limit_levels：参与条件
 	join_code：参与口令
-	join_num：已参与人数
 	start_ts：开始时间戳
 	end_ts：结束时间戳
 	state：状态（created=进行中 drawn=已开奖）
