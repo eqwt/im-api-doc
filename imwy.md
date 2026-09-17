@@ -264,6 +264,7 @@
 	remain_num：剩余红包个数
 	remark：祝福语
 	state：状态（created=待领取 claimed=已抢完 refunded=已过期(已退款)）
+	created_ts：红包发送时间戳
 	// 抢包详情(红包个数>100时，receivers值为文件url，再通过url获取，内容为json)
 	receivers：[
 		{
@@ -355,8 +356,6 @@
 }
 ```
 
-
-
 # 转账
 
 ## 转账消息说明
@@ -374,6 +373,7 @@
 	remark：转账备注
 	finished_ts：完成时间戳(根据当前状态判断对应 接收时间、退还时间、退款时间)
 	state：状态（created=待接收 received=已接收 rejected=已退还 refunded=已过期(已退款)）
+	created_ts：转账发起时间戳
 }
 ```
 
